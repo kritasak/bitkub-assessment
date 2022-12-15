@@ -61,19 +61,29 @@ export default function Detail({route, navigation}: Props) {
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-
-            <View
-                style={{
-                    backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                }}>
-                <Text>Loading Status: {status}</Text>
-                <View style={styles.postContainer}>
-                    <Text>Post ID: {postID}</Text>
-                    <Text>Title: {data['title']}</Text>
-                    <Text>body: {data['body']}</Text>
-                </View>
-                <Text>Comments</Text>
-                <FlatList
+            <ScrollView>
+                <View
+                    style={{
+                        backgroundColor: isDarkMode
+                            ? Colors.black
+                            : Colors.white,
+                    }}>
+                    <Text>Loading Status: {status}</Text>
+                    <View style={styles.postContainer}>
+                        <Text>Post ID: {postID}</Text>
+                        <Text>Title: {data['title']}</Text>
+                        <Text>body: {data['body']}</Text>
+                    </View>
+                    <Text>Comments</Text>
+                    <View>
+                        {Object.keys(comment).map(key => (
+                            <View style={styles.commentContainer}>
+                                <Text>{comment[parseInt(key)]['name']}</Text>
+                                <Text>{comment[parseInt(key)]['body']}</Text>
+                            </View>
+                        ))}
+                    </View>
+                    {/* <FlatList
                     data={comment}
                     renderItem={({item}) => (
                         <View style={styles.commentContainer}>
@@ -81,8 +91,9 @@ export default function Detail({route, navigation}: Props) {
                             <Text>Body: {item['body']}</Text>
                         </View>
                     )}
-                />
-            </View>
+                /> */}
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
