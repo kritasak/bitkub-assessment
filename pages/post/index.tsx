@@ -82,6 +82,7 @@ export default function Post({route, navigation}: Props) {
                     data={data}
                     renderItem={({item}) => (
                         <Section
+                            icon="post"
                             topic={'Post ID: ' + item['id']}
                             content={'Title: ' + item['title']}
                             onPress={() => navigateToDetail(item['id'])}

@@ -75,8 +75,9 @@ export default function Home({route, navigation}: Props) {
                     data={data}
                     renderItem={({item}) => (
                         <Section
+                            icon="profile"
                             topic={item['username']}
-                            content={item['name']}
+                            content={'Name: ' + item['name']}
                             onPress={() => navigateToPost(item['id'])}
                         />
                     )}

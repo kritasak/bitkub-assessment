@@ -11,26 +11,32 @@ import {
     View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import ProfileIcon from '../svgs/profile-icon';
+import PostIcon from '../svgs/post-icon';
 
 interface Props {
+    icon: string;
     topic: string;
     content: string;
     onPress(params: any): void;
 }
 
-const Section: React.FC<Props> = ({topic, content, onPress}) => {
+const Section: React.FC<Props> = ({icon, topic, content, onPress}) => {
     const isDarkMode = useColorScheme() === 'dark';
     return (
         <TouchableOpacity style={styles.sectionContainer} onPress={onPress}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}>
-                {topic}
-            </Text>
+            <View style={styles.subSectionContainer}>
+                {icon === 'profile' ? <ProfileIcon /> : <PostIcon />}
+                <Text
+                    style={[
+                        styles.sectionTitle,
+                        {
+                            color: isDarkMode ? Colors.white : Colors.black,
+                        },
+                    ]}>
+                    {topic}
+                </Text>
+            </View>
             <Text
                 style={[
                     styles.sectionDescription,
@@ -53,9 +59,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'bisque',
         borderRadius: 10,
     },
+    subSectionContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     sectionTitle: {
         fontSize: 24,
         fontWeight: '600',
+        marginLeft: 5,
     },
     sectionDescription: {
         marginTop: 8,

@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {RootStackParamList} from '../../App';
-import Section from '../../components/section';
+import ProfileIcon from '../../svgs/profile-icon';
+import PostIcon from '../../svgs/post-icon';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Detail'>;
 
@@ -70,16 +71,28 @@ export default function Detail({route, navigation}: Props) {
                     }}>
                     <Text>Loading Status: {status}</Text>
                     <View style={styles.postContainer}>
-                        <Text>Post ID: {postID}</Text>
-                        <Text>Title: {data['title']}</Text>
+                        <View style={styles.postHeader}>
+                            <PostIcon />
+                            <Text style={styles.postID}>Post ID: {postID}</Text>
+                        </View>
+                        <Text style={styles.highlight}>
+                            Title: {data['title']}
+                        </Text>
                         <Text>body: {data['body']}</Text>
                     </View>
                     <Text>Comments</Text>
                     <View>
                         {Object.keys(comment).map(key => (
-                            <View style={styles.commentContainer}>
-                                <Text>{comment[parseInt(key)]['name']}</Text>
-                                <Text>{comment[parseInt(key)]['body']}</Text>
+                            <View style={styles.listCommentContainer}>
+                                <ProfileIcon />
+                                <View style={styles.commentContainer}>
+                                    <Text style={styles.highlight}>
+                                        Name: {comment[parseInt(key)]['name']}
+                                    </Text>
+                                    <Text>
+                                        Body: {comment[parseInt(key)]['body']}
+                                    </Text>
+                                </View>
                             </View>
                         ))}
                     </View>
@@ -103,9 +116,16 @@ const styles = StyleSheet.create({
         marginTop: 32,
         paddingHorizontal: 24,
     },
-    sectionTitle: {
+    postID: {
         fontSize: 24,
         fontWeight: '600',
+        color: Colors.black,
+        marginLeft: 5,
+    },
+    postHeader: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     sectionDescription: {
         marginTop: 8,
@@ -121,10 +141,17 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
     },
+    listCommentContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        margin: 10,
+    },
     commentContainer: {
+        flex: 1,
         backgroundColor: 'bisque',
         padding: 10,
-        margin: 10,
+        marginLeft: 10,
         borderRadius: 10,
     },
 });
