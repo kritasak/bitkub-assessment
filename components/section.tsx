@@ -1,6 +1,5 @@
 import React, {type PropsWithChildren} from 'react';
 import {
-    GestureResponderEvent,
     SafeAreaView,
     ScrollView,
     StatusBar,

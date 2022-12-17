@@ -75,12 +75,14 @@ export default function Detail({route, navigation}: Props) {
                             <PostIcon />
                             <Text style={styles.postID}>Post ID: {postID}</Text>
                         </View>
-                        <Text style={styles.highlight}>
+                        <Text style={styles.postContent}>
                             Title: {data['title']}
                         </Text>
-                        <Text>body: {data['body']}</Text>
+                        <Text style={styles.postContent}>
+                            body: {data['body']}
+                        </Text>
                     </View>
-                    <Text>Comments</Text>
+                    <Text style={{marginLeft: 5}}>Comments</Text>
                     <View>
                         {Object.keys(comment).map(key => (
                             <View style={styles.listCommentContainer}>
@@ -112,9 +114,11 @@ export default function Detail({route, navigation}: Props) {
 }
 
 const styles = StyleSheet.create({
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
+    postContainer: {
+        backgroundColor: 'bisque',
+        padding: 10,
+        margin: 10,
+        borderRadius: 10,
     },
     postID: {
         fontSize: 24,
@@ -127,19 +131,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
+    postContent: {
+        backgroundColor: 'white',
+        padding: 10,
+        margin: 5,
+        borderRadius: 10,
     },
     highlight: {
         fontWeight: '700',
-    },
-    postContainer: {
-        backgroundColor: 'bisque',
-        padding: 10,
-        margin: 10,
-        borderRadius: 10,
     },
     listCommentContainer: {
         display: 'flex',
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     },
     commentContainer: {
         flex: 1,
-        backgroundColor: 'bisque',
+        backgroundColor: 'antiquewhite',
         padding: 10,
         marginLeft: 10,
         borderRadius: 10,
