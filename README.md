@@ -37,3 +37,7 @@ In the folder containing the React Native project, launch a new terminal and run
 -   Write unit tests (if possible)
 -   Use Redux, redux toolkit (if possible)
 -   Able to improve what I want to do more to show potential
+
+## More Information
+
+API: [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
